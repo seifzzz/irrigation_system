@@ -1,15 +1,12 @@
-package com.irrigation.irrigation.model;
+package com.irrigation.irrigation.services;
+import org.springframework.stereotype.Service;
 
-import jakarta.persistence.*;
-
+@Service
 public class IrrigationSystem {
-    private Boolean isIrrigating;
+    private Boolean isIrrigating = false;
 
     public IrrigationSystem() {
-
     }
-
-
     public Boolean getsIrrigating() {
         return isIrrigating;
     }

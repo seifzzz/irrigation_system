@@ -1,17 +1,20 @@
-package com.irrigation.irrigation.slot;
+package com.irrigation.irrigation.model;
 
-import com.irrigation.irrigation.land.land;
 import jakarta.persistence.*;
 
+
+// Data Model of Slot , It has OneToOne Relation with Land Class
 @Entity
 @Table(name = "slot")
 public class slot {
 
    @Id
    @Column(name = "land_id")
-   private String land_id;
+   private Long land_id;
    private double time ;
    private double water;
+
+    private boolean isIrrigating;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "land_id", referencedColumnName = "id")
@@ -19,11 +22,11 @@ public class slot {
     public slot() {
     }
 
-    public String getLand_id() {
+    public Long getLand_id() {
         return land_id;
     }
 
-    public void setLand_id(String land_id) {
+    public void setLand_id(Long land_id) {
         this.land_id = land_id;
     }
 
@@ -41,5 +44,13 @@ public class slot {
 
     public void setWater(double water) {
         this.water = water;
+    }
+
+    public boolean isIrrigating() {
+        return isIrrigating;
+    }
+
+    public void setIrrigating(boolean irrigating) {
+        isIrrigating = irrigating;
     }
 }

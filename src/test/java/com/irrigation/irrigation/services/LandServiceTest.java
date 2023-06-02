@@ -1,8 +1,7 @@
-package com.irrigation.irrigation.repository;
+package com.irrigation.irrigation.services;
 
 import com.irrigation.irrigation.model.land;
 import com.irrigation.irrigation.repositories.LandRepository;
-import com.irrigation.irrigation.services.LandService;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,6 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -59,9 +57,9 @@ public class LandServiceTest {
         land land = getLand("shrouk",80,"fruits") ;
         when(landRepository.findById(anyLong())).thenReturn(Optional.of(land));
 
-        final Optional<land> actual = landService.findById((long) 3 );
+        final Optional<land> actual = landService.findById(3L);
 
-        assertThat(actual).hasValue(land);
+        assertThat(actual).usingRecursiveComparison().isEqualTo(Optional.of(land));
         verify(landRepository, times(1)).findById(anyLong());
         verifyNoMoreInteractions(landRepository);
     }
@@ -88,6 +86,7 @@ public class LandServiceTest {
 
     private land getLand(String name,int size,String crop) {
         land land = new land();
+        land.setId(3L);
         land.setName(name);
         land.setSize(size);
         land.setCrop(crop);

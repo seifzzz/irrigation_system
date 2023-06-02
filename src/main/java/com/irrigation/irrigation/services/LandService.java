@@ -1,13 +1,14 @@
-package services;
+package com.irrigation.irrigation.services;
 
-import land.land;
-import repositories.LandRepository;
+import com.irrigation.irrigation.model.land;
+import com.irrigation.irrigation.repositories.LandRepository;
 
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class LandService {
@@ -17,9 +18,6 @@ public class LandService {
         this.landRepository = landRepository;
     }
 
-    public land create(land land) {
-        return landRepository.save(land);
-    }
 
     public List<land> findAll() {
         List<land> lands = new ArrayList<>();
@@ -27,14 +25,24 @@ public class LandService {
 
         return lands;
     }
+    public  land create(land l) {
+        return landRepository.save(l);
+    }
 
-    public Optional<land> findById(String id) {
+
+
+    public Optional<land> findById(Long id) {
         return landRepository.findById(id);
     }
 
     public land update(land landToUpdate) {
         return landRepository.save(landToUpdate);
     }
+
+    public void delete(Long id) {
+        landRepository.deleteById(id);
+    }
+
 
 
 }

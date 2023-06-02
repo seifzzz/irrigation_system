@@ -1,16 +1,16 @@
-package com.irrigation.irrigation.land;
-
-
+package com.irrigation.irrigation.model;
 
 import jakarta.persistence.*;
 
+//Data model for land
 @Entity
 @Table(name = "land")
 public class land {
 
     @Id
     @Column(name = "id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "size")
@@ -19,24 +19,21 @@ public class land {
     private String crop;
 
 
-
-
-   public land() {
-
-    }
-
-    public land(String id, String name,int size, String crop) {
-        this.id = id;
+    public land(String name, int size, String crop) {
         this.name = name;
-        this.crop = crop;
         this.size = size;
+        this.crop = crop;
     }
 
-    public String getId() {
+    public land() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,4 +1,4 @@
-package com.irrigation.irrigation.model;
+package com.irrigation.irrigation.component;
 
 import org.springframework.stereotype.Component;
 
@@ -6,8 +6,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
-public class retryQueue {
+//This class used to store failed process
+
+@Component
+public class RetryQueue {
     private Queue<Long> queue = new LinkedList<>();
+
+    public Queue<Long> getQueue() {
+        return queue;
+    }
 
     public void add(Long plotId) {
         queue.add(plotId);

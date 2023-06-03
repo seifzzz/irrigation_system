@@ -30,7 +30,9 @@ public class SlotService {
         return slotRepository.findById(id);
     }
 
-
+    public void delete(Long id) {
+        slotRepository.deleteById(id);
+    }
 
     public double CalculateTime(int size , int time){
 

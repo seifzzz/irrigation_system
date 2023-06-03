@@ -31,7 +31,7 @@ public class LandController {
     @GetMapping
     public ResponseEntity <List<land>> FindAll() {
         List<land> lands = landService.findAll();
-        List<slot> slots = slotService.findAll();
+
 
         return new ResponseEntity<>(lands,  HttpStatus.OK);
     }
@@ -87,8 +87,14 @@ public class LandController {
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteLand(@PathVariable Long id) {
+        Optional<land> optionalLand = landService.findById(id);
+        if (optionalLand.isEmpty() ) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         landService.delete(id);
-        logger.info("Land is deleted");
+        slotService.delete(id);
+        logger.info("Land is deleted & his slot is deleted");
         return ResponseEntity.noContent().build();
     }
 

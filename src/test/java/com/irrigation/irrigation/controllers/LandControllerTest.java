@@ -114,7 +114,7 @@ public class LandControllerTest {
     @Test
     void shouldDeleteLand() throws Exception {
 
-        doNothing().when(landService).delete(anyLong());
+        when(landService.findById(anyLong())).thenReturn(Optional.ofNullable(LondanLand));
 
         this.mockMvc.perform(delete("/plots/{id}", 1L))
                 .andExpect(status().isNoContent());

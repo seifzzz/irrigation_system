@@ -98,7 +98,7 @@ public class IrrigationControllerTest {
     void shouldIrrigateThisPlot() throws Exception {
         when(landService.findById(anyLong())).thenReturn(Optional.ofNullable(LondanLand));
         when(slotService.findById(anyLong())).thenReturn(Optional.ofNullable(LondanSlot));
-
+        when(irrigationSystem.getsIrrigating()).thenReturn(true);
         this.mockMvc.perform(post("/irrigation/irrigate/{plotId}", 1L))
                 .andExpect(status().isOk());
     }

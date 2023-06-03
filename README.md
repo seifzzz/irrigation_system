@@ -38,5 +38,5 @@ it's used when the system can't irrigate , just to alert the client ,if he can't
 system is available
 
 # Before Running server  
-change application properties, to connect your local database using mysql (url , usernaem and password)
+change application properties, to connect your local database using mysql (url , username and password)
 

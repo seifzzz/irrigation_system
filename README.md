@@ -40,3 +40,13 @@ system is available
 # Before Running server  
 change application properties, to connect your local database using mysql (url , username and password)
 
+# test unit
+I made test units for land controller , irrigation controller , land service and slot service
+
+# Bonus point
+I predicted the (slots time / amount of water) based on the given type of agricultural crop / cultivated area.
+
+# Retry Mechanism 
+I could use circuit breaker annontation or retryable annontation , but I didn't used it , I peferred easy way using thread , I putting it comment (SensorService class)
+
+

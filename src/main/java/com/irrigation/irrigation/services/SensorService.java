@@ -1,4 +1,7 @@
 package com.irrigation.irrigation.services;
+import com.irrigation.irrigation.controllers.IrrigationController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.retry.annotation.CircuitBreaker;
 import org.springframework.stereotype.Service;
 
@@ -6,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SensorService {
     private static final int MAX_RETRY_ATTEMPTS = 3;
-
+    Logger logger =  LoggerFactory.getLogger(IrrigationController .class);
     private int retryCount;
 
     private boolean SensorAvailable;
@@ -28,7 +31,7 @@ public class SensorService {
             if (retryCount < MAX_RETRY_ATTEMPTS) {
                 retryCount++;
                 Thread.sleep(3000);
-                System.out.println("trying to irrigate");
+                logger.warn("trying to irrigate this land");
                 return sendIrrigationRequest();
             }
             return false;

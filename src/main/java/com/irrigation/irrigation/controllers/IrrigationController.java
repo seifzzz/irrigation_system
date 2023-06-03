@@ -86,7 +86,7 @@ public class IrrigationController {
         logger.info("Start to irrigate lands.");
 
         for (slot slot : slots) {
-            //logger.info(count+ ": Land " + lands.get(count-1).getName());
+            logger.info(count+ ": Land " + lands.get(count-1).getName());
             irrigatePlot(slot.getLand_id());
             count++;
         }
@@ -105,17 +105,21 @@ public class IrrigationController {
             land land = Oland.get();
 
             logger.info((1+i) + ": Land " + land.getName());
-            irrigatePlot(retryQueue.poll());
+            irrigatePlot(land.getId());
         }
     }
     private void RunningSystem() throws InterruptedException {
 
          RunningSavedLands();
-      //   RunningRetryLands();
+         RunningRetryLands();
 
     }
 
     public ResponseEntity<String> irrigatePlot(Long plotId) throws InterruptedException {
+
+        if(!irrigationSystem.getsIrrigating()){
+            return ResponseEntity.badRequest().body("the system doesn't work");
+        }
 
         Optional<land> optionalPlot = landService.findById(plotId);
         Optional<slot> optionalSlot = slotService.findById(plotId);

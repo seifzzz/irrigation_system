@@ -71,6 +71,7 @@ public class LandController {
 
 
         if (optionalLand.isEmpty() ) {
+            logger.warn("Land isn't found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -89,6 +90,7 @@ public class LandController {
     public ResponseEntity<Void> deleteLand(@PathVariable Long id) {
         Optional<land> optionalLand = landService.findById(id);
         if (optionalLand.isEmpty() ) {
+            logger.warn("Land isn't found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
